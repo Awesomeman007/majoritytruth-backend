@@ -11,7 +11,7 @@ export class User {
     userId: number
 
     @Column({ nullable: true })
-    metamaskKey: string
+    muserId: string
 
     @Column()
     email: string

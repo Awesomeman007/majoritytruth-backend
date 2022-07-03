@@ -33,6 +33,18 @@ export class Contract {
     @Column()
     dislikeCount: number
 
+    @Column()
+    creatorAddress: string
+
+    @Column({ nullable: true })
+    challengerAddress: string
+
+    @Column()
+    createTransactionId: string
+
+    @Column({ nullable: true })
+    challengeTransactionId: string
+
     @ManyToMany((type) => Category, (category) => category.contracts, {
         onUpdate: 'NO ACTION',
         onDelete: 'CASCADE',

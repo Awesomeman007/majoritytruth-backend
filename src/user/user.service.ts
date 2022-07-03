@@ -55,7 +55,7 @@ export class UserService {
     const user = this.userRepository.create({
       ...dto,
       password: hashedPassword,
-      metamaskKey: '',
+      muserId: '',
     });
     return (await this.userRepository.insert(user)).identifiers.map((i) => ({
       userId: i.userId,
