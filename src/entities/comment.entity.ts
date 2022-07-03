@@ -7,6 +7,12 @@ export class Comment {
     @PrimaryColumn({ type: 'timestamp without time zone'})
     dateTime: Date
 
+    @PrimaryColumn()
+    commentorId: number
+
+    @PrimaryColumn()
+    contractId: number
+
     @Column()
     comment: string
 
@@ -15,7 +21,7 @@ export class Comment {
         onDelete: 'CASCADE',
         nullable: false,
     })
-    @JoinColumn({ name: 'userId', referencedColumnName: 'userId' })
+    @JoinColumn({ name: 'commentorId', referencedColumnName: 'userId' })
     user: User;
 
     @ManyToOne((type) => Contract, (contract) => contract.comments, {

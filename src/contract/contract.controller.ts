@@ -9,8 +9,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UserGuard } from 'src/auth/jwt.guard';
+import { Contract } from 'src/entities/contract.entity';
 import { ContractService } from './contract.service';
 import { CreateContractDto } from './dto/contract.dto';
 
@@ -33,6 +34,7 @@ export class ContractController {
   }
 
   @Get()
+  @ApiOkResponse({type: [Contract]})
   async getContracts(
     // @Req() req,
   ) {

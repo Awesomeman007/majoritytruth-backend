@@ -7,6 +7,12 @@ export class Vote {
     @PrimaryColumn({ type: 'timestamp without time zone'})
     dateTime: Date
 
+    @PrimaryColumn()
+    voterId: number
+
+    @PrimaryColumn()
+    contractId: number
+
     @Column()
     like: boolean
 
@@ -15,7 +21,7 @@ export class Vote {
         onDelete: 'CASCADE',
         nullable: false,
     })
-    @JoinColumn({ name: 'userId', referencedColumnName: 'userId' })
+    @JoinColumn({ name: 'voterId', referencedColumnName: 'userId' })
     user: User;
 
     @ManyToOne((type) => Contract, (contract) => contract.comments, {
@@ -24,5 +30,5 @@ export class Vote {
         nullable: false,
     })
     @JoinColumn({ name: 'contractId', referencedColumnName: 'contractId' })
-    contract: User;
+    contract: Contract;
 }

@@ -92,7 +92,7 @@ export class ContractService {
     // return await this.contractRepository.insert(newContract);
   }
 
-  async getContractInExpiryDate(): Promise<any> {
+  async getContractInExpiryDate(): Promise<Contract[]> {
     const contracts = await this.contractRepository.find({
       relations: {
         categories: true,
@@ -105,5 +105,16 @@ export class ContractService {
     });
 
     return contracts;
+  }
+
+  async challengeContract(
+    contractId: number,
+    userId: number,
+    address: string,
+    transactionId: string,
+  ): Promise<any> {
+    const contract = await this.contractRepository.findOne({ where: {contractId: contractId} });
+    contract.challengerId = userId
+
   }
 }

@@ -9,6 +9,12 @@ export class Contract {
     @PrimaryGeneratedColumn()
     contractId: number
 
+    @Column()
+    creatorId: number
+
+    @Column()
+    challengerId: number
+
     @Column({ type: 'timestamp without time zone'})
     createdDateTime: Date
 
@@ -77,7 +83,7 @@ export class Contract {
         nullable: false,
     })
     @JoinColumn({ name: 'creatorId', referencedColumnName: 'userId'})
-    creatorId: User
+    creator: User
 
     @ManyToOne((type) => User, (user) => user.userId, {
         onUpdate: 'NO ACTION',
@@ -85,6 +91,6 @@ export class Contract {
         nullable: true,
     })
     @JoinColumn({ name: 'challengerId', referencedColumnName: 'userId'})
-    challengerId: User
+    challenger: User
 
 }
