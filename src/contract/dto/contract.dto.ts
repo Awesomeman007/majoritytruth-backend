@@ -31,3 +31,17 @@ export class CreateContractDto {
     @IsString()
     createTransactionId: string
 }
+
+export class ChallengerContractDto {
+    @ApiProperty()
+    @IsNumber()
+    contractId: number
+
+    @ApiProperty()
+    @IsString()
+    transactionId: string
+
+    @ApiProperty()
+    @IsString()
+    address: string
+}

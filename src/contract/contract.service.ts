@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from 'src/entities/category.entity';
 import { Contract } from 'src/entities/contract.entity';
@@ -108,13 +108,19 @@ export class ContractService {
   }
 
   async challengeContract(
-    contractId: number,
     userId: number,
+    contractId: number,
     address: string,
     transactionId: string,
   ): Promise<any> {
     const contract = await this.contractRepository.findOne({ where: {contractId: contractId} });
-    contract.challengerId = userId
 
+    if (!contract) throw new HttpException("Contract not found", HttpStatus.NOT_FOUND);
+    if (new Date() > contract.expiryDateTime) throw new HttpException("Contract Expired", HttpStatus.CONFLICT);
+
+    contract.challengerId = userId
+    contract.challengerAddress = address
+    contract.challengeTransactionId = transactionId
+    await this.contractRepository.save(contract)
   }
 }
