@@ -22,4 +22,12 @@ export class CreateContractDto {
     @ApiProperty()
     @IsArray()
     categories: string[]
+
+    @ApiProperty()
+    @IsString()
+    creatorAddress: string
+
+    @ApiProperty()
+    @IsString()
+    createTransactionId: string
 }

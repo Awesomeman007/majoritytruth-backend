@@ -48,6 +48,8 @@ export class ContractService {
       dislikeCount: 0,
       likeCount: 0,
       votes: null,
+      creatorAddress: createContractDto.creatorAddress,
+      createTransactionId: createContractDto.createTransactionId,
     });
 
     const contractRes = await this.contractRepository.insert(newContract);
