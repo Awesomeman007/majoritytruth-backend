@@ -39,9 +39,9 @@ export class ChallengerContractDto {
 
     @ApiProperty()
     @IsString()
-    transactionId: string
+    challengeTransactionId: string
 
     @ApiProperty()
     @IsString()
-    address: string
+    challengerAddress: string
 }

@@ -12,7 +12,7 @@ export class Contract {
     @Column()
     creatorId: number
 
-    @Column()
+    @Column({ nullable: true})
     challengerId: number
 
     @Column({ type: 'timestamp without time zone'})

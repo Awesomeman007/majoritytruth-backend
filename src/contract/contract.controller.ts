@@ -56,8 +56,8 @@ export class ContractController {
     return await this.contractService.challengeContract(
       userId,
       challengeContractDto.contractId,
-      challengeContractDto.address,
-      challengeContractDto.transactionId,
+      challengeContractDto.challengerAddress,
+      challengeContractDto.challengeTransactionId,
     );
   }
 }
